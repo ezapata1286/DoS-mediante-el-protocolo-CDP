@@ -1,0 +1,19 @@
+! =====================================================================
+! SCRIPT DE MITIGACIÓN: PROTECCIÓN CONTRA CDP FLOODING DOS (ESCENARIO 3)
+! Protocolo Afectado: Cisco Discovery Protocol (Proprietario L2)
+! =====================================================================
+
+configure terminal
+
+! 1. Ingresar a la interfaz expuesta al script de inundacion
+interface ethernet 0/3
+ description Puerto_Usuario_Final
+
+! 2. Desactivar por completo la transmision y escucha de CDP en este puerto
+ no cdp enable
+ exit
+
+! 3. Limpiar de la memoria RAM del IOS los vecinos falsos inyectados por el script
+end
+clear cdp table
+write memory
